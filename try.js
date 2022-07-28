@@ -2,16 +2,12 @@ const fs = require("fs");
 const readline = require("readline");
 
 const productData= {
-    name:"",
-    sellingprice:"",
-    listprice:"",
-    description:"",
+    name: " ",
+    sellingprice: " ",
+    listprice: " ",
+    description: " ",
 }
 
-const jsonData= JSON.stringify(productData);
-fs.writeFileSync("task0.json",jsonData,(err) => {
-    console.log("done");
-})
 
 // const wtf =(name,sellingprice,listprice,description) => {
 //     fs.writeFile("task.txt",`${name},${sellingprice},${listprice},${description}`,(error) =>{
@@ -20,13 +16,50 @@ fs.writeFileSync("task0.json",jsonData,(err) => {
 //         }
 //     });
 // }
+// const jsonData= JSON.stringify(wtf);
+
+
+//  const wtf =(productData) => {
+//      fs.writeFile("task.txt",`${productData.name},${productData.sellingprice},${productData.listprice},${productData.description}`,(error) =>{
+//          if (error){
+//              console.log("Error Occured when writting to the file" );
+//          }
+//      });
+//  }
+
+
+// const users = require("./task0");
+
+// const productData= [{
+//     name: " ",
+//     sellingprice: " ",
+//     listprice: " ",
+//     description: " "
+// }];
+
+// users.push(productData);
+
+// fs.writeFile("task0.json",JSON.stringify(users), err => {
+//     if(err) throw err;
+//     console.log("writting done");
+// });
 
 const r1 = readline.createInterface({
     input: process.stdin,
     output:process.stdout
 });
 
-r1.question("productname,sellingprice,listprice,description",(name,sellingprice,listprice,description) =>{
+r1.question("productname,sellingprice,listprice,description",(name) =>{
     r1.close();
-    wtf(name,sellingprice,listprice,description);
+    console.log(name)
+    name = name.split(" ")
+    productData.name = name[0]
+    productData.sellingprice = name[1]
+    productData.listprice = name[2]
+    productData.description = name[3]
+    const jsonData= JSON.stringify(productData);
+fs.writeFileSync("task0.json",jsonData,(err) => {
+    console.log("done");
+});
+    // wtf(name,sellingprice,listprice,description);
 });
