@@ -436,6 +436,8 @@ const askQuestions = async (questionText) => {
 let arr = [];
 const main = async () => {
   const username = await askQuestions('Enter your username: ');
+  // fs.renameSync('username.json', 'username.json');
+  // console.log('file created');
   // try {
   //   await User.create({
   //     username,
@@ -458,7 +460,7 @@ const main = async () => {
     if (err) {
       return onErr(err);
     }
-    console.log('Command-line input received:');
+    // console.log('Command-line input received:');
     console.log('  Username: ' + username);
   });
 
@@ -477,13 +479,14 @@ const main = async () => {
       today: new Date(),
     },
   ];
+
   console.log('your product', data);
   arr.push(data);
   rl.close();
   let jsonData = JSON.stringify(data, null, 2);
   let today = new Date();
   try {
-    fs.writeFileSync('client.json', jsonData);
+    fs.writeFileSync(`${username}.json`, jsonData);
   } catch (err) {
     console.log(err);
   }
