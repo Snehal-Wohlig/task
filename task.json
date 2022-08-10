@@ -1,1 +1,38 @@
-{"name":" fan","sellingprice":"500","listPrice":"700","description":"nice brand of fan"}
+[
+  {
+    "name": "book",
+    "sellingprice": "250",
+    "listPrice": "230",
+    "description": "nice"
+  },
+  {
+    "name": "compas kit",
+    "sellingprice": "60",
+    "listPrice": "55",
+    "description": "nice"
+  },
+  {
+    "name": "shoe",
+    "sellingprice": "500",
+    "listPrice": "400",
+    "description": "nice"
+  },
+  {
+    "name": "60",
+    "sellingprice": "40",
+    "listPrice": "nice",
+    "description": "no"
+  },
+  {
+    "name": "note book",
+    "sellingprice": "60",
+    "listPrice": "40",
+    "description": "nice"
+  },
+  {
+    "name": "mop",
+    "sellingprice": "900",
+    "listPrice": "800",
+    "description": "nice"
+  }
+]
