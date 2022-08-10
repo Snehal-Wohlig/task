@@ -420,7 +420,7 @@ let arrayData = require('./task.json');
 // console.log(arrayData);
 
 console.table(arrayData);
-
+let arr = [];
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -433,7 +433,8 @@ const askQuestions = async (questionText) => {
     });
   });
 };
-let arr = [];
+
+// console.log(arr);
 const main = async () => {
   const username = await askQuestions('Enter your username: ');
   // fs.renameSync('username.json', 'username.json');
@@ -468,27 +469,32 @@ const main = async () => {
   //   console.log(err);
   //   return 1;
   // }
+  let flow = true;
+  while (flow) {
+    const name = await askQuestions('choose product: ');
 
-  const name = await askQuestions('choose product: ');
+    //   const price = await askQuestions('choose product');
+    const data = [
+      {
+        productName: arrayData[name].name,
+        producprice: arrayData[name].sellingprice,
+        today: new Date(),
+      },
+    ];
+    arr.push(data);
+    // console.log(arr);
+    console.log('your product', data);
+    // console.log(arr);
 
-  //   const price = await askQuestions('choose product');
-  const data = [
-    {
-      productName: arrayData[name].name,
-      producprice: arrayData[name].sellingprice,
-      today: new Date(),
-    },
-  ];
-
-  console.log('your product', data);
-  arr.push(data);
-  rl.close();
-  let jsonData = JSON.stringify(data, null, 2);
-  let today = new Date();
-  try {
-    fs.writeFileSync(`${username}.json`, jsonData);
-  } catch (err) {
-    console.log(err);
+    rl.close();
+    flow = false;
+    let jsonData = JSON.stringify(data, null, 2);
+    let today = new Date();
+    try {
+      fs.writeFileSync(`${username}.json`, jsonData);
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
 main();
