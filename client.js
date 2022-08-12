@@ -427,8 +427,10 @@ const rl = readline.createInterface({
 });
 
 const askQuestions = async (questionText) => {
+  // console.log('qt', questionText);
   return new Promise((resolve, reject) => {
     rl.question(questionText, function (answer) {
+      // console.log('answer', answer);
       resolve(answer);
     });
   });
@@ -455,16 +457,6 @@ const main = async () => {
   //   });
   // }
 
-  prompt.start();
-
-  prompt.get(username, function (err, result) {
-    if (err) {
-      return onErr(err);
-    }
-    // console.log('Command-line input received:');
-    console.log('  Username: ' + username);
-  });
-
   // function onErr(err) {
   //   console.log(err);
   //   return 1;
@@ -474,22 +466,33 @@ const main = async () => {
     const name = await askQuestions('choose product: ');
 
     //   const price = await askQuestions('choose product');
-    const data = [
-      {
-        productName: arrayData[name].name,
-        producprice: arrayData[name].sellingprice,
-        today: new Date(),
-      },
-    ];
-    arr.push(data);
+    const data = {
+      productName: arrayData[name].name,
+      producprice: arrayData[name].sellingprice,
+      today: new Date(),
+    };
+    // arr.push(data);
     // console.log(arr);
+    console.log('  Username: ' + username);
     console.log('your product', data);
     // console.log(arr);
-
+    arr.push(data);
+    console.log('  Username: ' + username);
+    console.log(arr);
     rl.close();
     flow = false;
-    let jsonData = JSON.stringify(data, null, 2);
+    let jsonData = JSON.stringify(arr, null, 2);
     let today = new Date();
+    // prompt.start();
+
+    // prompt.get(username, function (err, result) {
+    //   if (err) {
+    //     return onErr(err);
+    //   }
+    //   // console.log('Command-line input received:');
+    //   console.log('  Username: ' + username);
+    // });
+
     try {
       fs.writeFileSync(`${username}.json`, jsonData);
     } catch (err) {
